@@ -26,13 +26,15 @@ public class MopmBukkitPlugin extends JavaPlugin implements IMopmPlugin {
     @Override
     public void onEnable() {
         MopmAPI.setPlugin(this);
-        this.lookupThread = new IPLookupThread();
+        this.lookupThread = new IPLookupThread(this);
         this.blacklists = new ArrayList<>();
         this.listener = new ConnectionListener(this);
         this.config = new MopmConfiguration(this);
         this.config.readConfig((YamlConfiguration) this.getConfig());
 
         this.getServer().getPluginManager().registerEvents(listener, this);
+
+        lookupThread.run();
     }
 
     @Override
