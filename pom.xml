@@ -30,8 +30,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
+            <groupId>net.eyslium</groupId>
+            <artifactId>eyslium-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
