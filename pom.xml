@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>__0x277F.plugins</groupId>
     <artifactId>mopm</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <build>
+        <defaultGoal>clean install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -19,20 +21,24 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>mopm-api</module>
+        <module>mopm-plugin</module>
+        <module>mopm-core</module>
+    </modules>
 
     <repositories>
         <repository>
             <id>torchmind</id>
             <url>https://maven.torchmind.com/snapshot/</url>
         </repository>
-
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>net.eyslium</groupId>
-            <artifactId>eyslium-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.9.2-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.torchmind.minecraft</groupId>

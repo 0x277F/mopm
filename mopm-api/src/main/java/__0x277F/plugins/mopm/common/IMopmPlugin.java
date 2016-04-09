@@ -3,11 +3,16 @@ package __0x277F.plugins.mopm.common;
 import java.util.List;
 import java.util.logging.Logger;
 
-public interface IMopmPlugin {
+public interface IMopmPlugin extends ThreadMagic {
     boolean isEnabled();
-    IPLookupThread getLookupThread();
+
+    ILookupBoss getLookupBoss();
+
     List<ProxyBlacklist> getAllProxyBlacklists();
+
     void addProxyBlacklist(ProxyBlacklist blacklist);
+
     Logger getLogger();
+
     MopmConfiguration getConfiguration();
 }

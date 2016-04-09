@@ -20,26 +20,28 @@ public class AsyncProxyDetectedEvent extends Event {
     private List<Predicate<Player>> actions;
 
     public AsyncProxyDetectedEvent(ProxyBlacklist blacklist, InetAddress address, UUID uuid) {
+        super(true);
         this.blacklist = blacklist;
         this.address = address;
         this.uuid = uuid;
         this.actions = new ArrayList<>();
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
     /**
      * Schedule an action to be run synchronously when the connection is fully established.
+     *
      * @param action Predicate that is run when the player connects. Return true to halt execution (should be done if the player is no longer online, etc.)
      */
-    public void scheduleOnJoin(Predicate<Player> action){
+    public void scheduleOnJoin(Predicate<Player> action) {
         actions.add(action);
     }
 
     @Override
     public HandlerList getHandlers() {
-        return handlers;
-    }
-
-    public static HandlerList getHandlerList() {
         return handlers;
     }
 

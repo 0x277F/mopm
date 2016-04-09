@@ -8,12 +8,15 @@ public class ProxyBlacklist {
     private String rootAddress;
     private String name;
     private String defaultCommand;
-
     public ProxyBlacklist(String rootAddress, String name, BiPredicate<String, InetAddress> matcher, String defaultCommand) {
         this.rootAddress = rootAddress;
         this.name = name;
         this.matcher = matcher;
         this.defaultCommand = defaultCommand;
+    }
+
+    public String getRootAddress() {
+        return rootAddress;
     }
 
     public boolean matches(InetAddress address) {

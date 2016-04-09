@@ -27,26 +27,24 @@ public class ConnectionListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPreLogin(AsyncPlayerPreLoginEvent event) {
-        plugin.getLookupThread().scheduleLookup(event.getAddress(), proxyBlacklist -> {
-            if(proxyBlacklist != null) {
-                AsyncProxyDetectedEvent detectedEvent = new AsyncProxyDetectedEvent(proxyBlacklist, event.getAddress(), event.getUniqueId());
-                plugin.getServer().getPluginManager().callEvent(detectedEvent);
-                this.onJoinActions.put(detectedEvent.getUuid(), detectedEvent.getActions());
-                this.finders.put(event.getUniqueId(), proxyBlacklist);
-            }
-        });
+        plugin.getLookupBoss().scheduleLookup(event.getAddress(), optBl -> optBl.ifPresent(proxyBlacklist -> {
+            AsyncProxyDetectedEvent detectedEvent = new AsyncProxyDetectedEvent(proxyBlacklist, event.getAddress(), event.getUniqueId());
+            plugin.getServer().getPluginManager().callEvent(detectedEvent);
+            this.onJoinActions.put(detectedEvent.getUuid(), detectedEvent.getActions());
+            this.finders.put(event.getUniqueId(), proxyBlacklist);
+        }));
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if(onJoinActions.containsKey(event.getPlayer().getUniqueId())) {
+        if (onJoinActions.containsKey(event.getPlayer().getUniqueId())) {
             ProxyBlacklist blacklist = finders.get(event.getPlayer().getUniqueId());
             plugin.getLogger().info("Player " + event.getPlayer().getName() + " connected with an open proxy at " + event.getPlayer().getAddress().getAddress().getHostAddress() + " as detected by " + blacklist.getName());
-            if(event.getPlayer().hasPermission("mopm.bypass")) {
+            if (event.getPlayer().hasPermission("mopm.bypass")) {
                 plugin.getLogger().info("Player " + event.getPlayer().getName() + " bypassed open proxy detection by permission");
             }
-            for(Predicate<Player> p : onJoinActions.get(event.getPlayer().getUniqueId())) {
-                if(p.test(event.getPlayer())) {
+            for (Predicate<Player> p : onJoinActions.get(event.getPlayer().getUniqueId())) {
+                if (p.test(event.getPlayer())) {
                     return;
                 }
             }

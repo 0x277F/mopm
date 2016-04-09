@@ -1,0 +1,22 @@
+blacklists:
+  EFNet:
+    address: rbl.efnet.org
+    type: A
+    # Legal placeholders: %player% for player name, %bl% for the name of the DNS blacklist
+    on-match: ban %player% Your address was found in a DNS blacklist for open proxies!
+  DroneBL:
+    address: dnsbl.dronebl.org
+    type: A
+    on-match: ban %player% Your address is listed in the %bl% DNS Blacklist.
+
+# Sets whether proxy detection is not done on all players upon join. There are very few good
+# reasons to turn this on.
+manual: false
+
+# Modification of these values should only be done with forethought.
+advanced:
+  # Sets the number of threads on which lookups may be performed.
+  # This can be set to a lower number for low-volume servers and to a higher number for high-volume servers.
+  # If manual mode is enabled, this should normally be 1. Note that a low value here will not cause more lag,
+  # but rather just delay the time it takes to verify a player.
+  workers: 3
