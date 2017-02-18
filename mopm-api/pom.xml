@@ -48,14 +48,6 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>BasinMC</id>
-            <name>BasinMC Repository</name>
-            <url>https://www.basinmc.org/nexus/repository/maven-snapshots/</url>
-        </repository>
-    </distributionManagement>
-
     <dependencies>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
