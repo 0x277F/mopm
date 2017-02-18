@@ -44,7 +44,6 @@ public class MopmConfiguration {
                         }
                         builder.append(bl);
                         String lookup = builder.toString();
-                        plugin.getLogger().info("Reversed bytes: " + lookup);
                         try {
                             InetAddress.getByName(lookup);
                         } catch (UnknownHostException e) {
