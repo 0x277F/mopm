@@ -38,6 +38,7 @@
                             <include>lc.hex:mopm-api</include>
                         </includes>
                     </artifactSet>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
                 <executions>
                     <execution>

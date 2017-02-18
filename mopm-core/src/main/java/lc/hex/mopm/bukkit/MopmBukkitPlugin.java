@@ -34,7 +34,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-@Plugin(name = "mopm", author = "Hex", description = "Minecraft Open Proxy Monitor", version = "1.0-SNAPSHOT")
+@Plugin(name = "mopm", author = "Hex", description = "Minecraft Open Proxy Monitor", version = "maven-version-number")
 @Permissions({@Permission(name = "mopm.bypass", description = "Bypass all actions taken when connecting via open proxy", defaultValue = PermissionDefault.OP)})
 public class MopmBukkitPlugin extends JavaPlugin implements IMopmPlugin {
     private MopmLookupBoss boss;
