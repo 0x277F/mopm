@@ -33,8 +33,8 @@
                 <configuration>
                     <artifactSet>
                         <includes>
-                            <include>__0x277F.plugins:mopm-core</include>
-                            <include>__0x277F.plugins:mopm-api</include>
+                            <include>lc.hex:mopm-core</include>
+                            <include>lc.hex:mopm-api</include>
                         </includes>
                     </artifactSet>
                 </configuration>
