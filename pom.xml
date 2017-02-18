@@ -24,11 +24,12 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <build>
-        <defaultGoal>clean install</defaultGoal>
+        <defaultGoal>clean package install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -59,6 +60,7 @@
                 <groupId>org.spigotmc</groupId>
                 <artifactId>spigot-api</artifactId>
                 <version>1.11.2-R0.1-SNAPSHOT</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.torchmind.minecraft</groupId>
@@ -73,5 +75,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
