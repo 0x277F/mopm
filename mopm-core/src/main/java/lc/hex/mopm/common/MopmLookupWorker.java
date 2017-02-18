@@ -1,10 +1,14 @@
-package __0x277F.plugins.mopm.common;
+package lc.hex.mopm.common;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Optional;
 import java.util.logging.Logger;
+
+import lc.hex.mopm.api.common.ILookupBoss;
+import lc.hex.mopm.api.common.ILookupWorker;
+import lc.hex.mopm.api.common.MopmAPI;
+import lc.hex.mopm.api.common.ProxyBlacklist;
 
 public class MopmLookupWorker implements ILookupWorker, Runnable {
     private volatile boolean working = false;
@@ -55,28 +59,13 @@ public class MopmLookupWorker implements ILookupWorker, Runnable {
     }
 
     private void handleARequest(LookupRequest request) {
-        boolean matched = false;
         ProxyBlacklist matcher = null;
         InetAddress inetAddress = request.getAddress();
         for (ProxyBlacklist blacklist : MopmAPI.getAllBlacklists()) {
-            if (matched) {
-                break;
-            }
             if (inetAddress instanceof Inet4Address) {
-                byte[] b = inetAddress.getAddress();
-                StringBuilder builder = new StringBuilder();
-                for (int i = b.length - 1; i >= 0; i--) {
-                    builder.append(String.valueOf(b[i] & 0xFF));
-                    builder.append(".");
-                }
-                builder.append(blacklist.getName());
-                String lookup = builder.toString();
-                try {
-                    InetAddress.getByName(lookup);
-                    matched = true;
+                if (blacklist.test(inetAddress)) {
                     matcher = blacklist;
-                } catch (UnknownHostException e) {
-                    // Do nothing, blacklist did not find entry
+                    break;
                 }
             } else {
                 logger.warning("Inet Address " + inetAddress.getCanonicalHostName() + " is not IPv4, somehow.");

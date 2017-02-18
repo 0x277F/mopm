@@ -1,4 +1,4 @@
-package __0x277F.plugins.mopm.common;
+package lc.hex.mopm.common;
 
 import com.google.common.collect.HashBiMap;
 
@@ -8,6 +8,12 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
+
+import lc.hex.mopm.api.common.ILookupBoss;
+import lc.hex.mopm.api.common.ILookupWorker;
+import lc.hex.mopm.api.common.LookupType;
+import lc.hex.mopm.api.common.MopmAPI;
+import lc.hex.mopm.api.common.ProxyBlacklist;
 
 public class MopmLookupBoss implements ILookupBoss {
     final BlockingQueue<LookupRequest> requestQueue = new LinkedBlockingQueue<>();
@@ -26,7 +32,7 @@ public class MopmLookupBoss implements ILookupBoss {
         logger.info("Attempting to start " + workerNum + " worker threads...");
         for (int i = 1; i <= workerNum; i++) {
             MopmLookupWorker worker = new MopmLookupWorker(this, i);
-            MopmAPI.plugin.runAsync(worker);
+            MopmAPI.getThreadMagic().runAsync(worker);
             workers.put(i, worker);
         }
 
@@ -41,6 +47,7 @@ public class MopmLookupBoss implements ILookupBoss {
     @Override
     public void scheduleLookup(InetAddress address) {
         scheduleLookup(address, bl -> {
+            scheduleLookup(address, optBl -> { });
         });
     }
 
@@ -74,6 +81,7 @@ public class MopmLookupBoss implements ILookupBoss {
         workerNum = workers.size();
         logger.warning("        Worker thread #" + id + " killed by " + Thread.currentThread().getName());
     }
+
     public class Unsafe implements ILookupBoss.Unsafe {
         @Override
         public ILookupWorker getWorker(int id) {

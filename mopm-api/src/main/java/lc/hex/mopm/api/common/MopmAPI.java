@@ -1,4 +1,4 @@
-package __0x277F.plugins.mopm.common;
+package lc.hex.mopm.api.common;
 
 import java.util.List;
 
@@ -19,5 +19,9 @@ public class MopmAPI {
 
     public static List<ProxyBlacklist> getAllBlacklists() {
         return plugin.getAllProxyBlacklists();
+    }
+
+    public static ThreadMagic getThreadMagic() {
+        return plugin;
     }
 }

@@ -1,8 +1,11 @@
-package __0x277F.plugins.mopm.common;
+package lc.hex.mopm.common;
 
 import java.net.InetAddress;
 import java.util.Optional;
 import java.util.function.Consumer;
+
+import lc.hex.mopm.api.common.LookupType;
+import lc.hex.mopm.api.common.ProxyBlacklist;
 
 public class LookupRequest {
     private final InetAddress address;

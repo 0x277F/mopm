@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>__0x277F.plugins</groupId>
+    <groupId>lc.hex</groupId>
     <artifactId>mopm</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -32,20 +32,31 @@
             <id>torchmind</id>
             <url>https://maven.torchmind.com/snapshot/</url>
         </repository>
+        <repository>
+            <id>SpigotMC</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
+        </repository>
     </repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.9.2-R0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.torchmind.minecraft</groupId>
-            <artifactId>plugin-annotations</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.spigotmc</groupId>
+                <artifactId>spigot-api</artifactId>
+                <version>1.11.2-R0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.torchmind.minecraft</groupId>
+                <artifactId>plugin-annotations</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>3.0.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

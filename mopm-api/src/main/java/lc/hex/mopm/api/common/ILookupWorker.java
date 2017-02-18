@@ -1,4 +1,4 @@
-package __0x277F.plugins.mopm.common;
+package lc.hex.mopm.api.common;
 
 public interface ILookupWorker {
     ILookupBoss getBoss();

@@ -1,11 +1,12 @@
-package __0x277F.plugins.mopm.bukkit;
+package lc.hex.mopm.bukkit;
 
-import __0x277F.plugins.mopm.common.ILookupBoss;
-import __0x277F.plugins.mopm.common.IMopmPlugin;
-import __0x277F.plugins.mopm.common.MopmAPI;
-import __0x277F.plugins.mopm.common.MopmConfiguration;
-import __0x277F.plugins.mopm.common.MopmLookupBoss;
-import __0x277F.plugins.mopm.common.ProxyBlacklist;
+import lc.hex.mopm.api.common.ILookupBoss;
+import lc.hex.mopm.api.common.IMopmPlugin;
+import lc.hex.mopm.api.common.MopmAPI;
+import lc.hex.mopm.api.common.MopmConfiguration;
+import lc.hex.mopm.api.common.ThreadMagic;
+import lc.hex.mopm.common.MopmLookupBoss;
+import lc.hex.mopm.api.common.ProxyBlacklist;
 import com.torchmind.minecraft.annotation.Plugin;
 import com.torchmind.minecraft.annotation.permission.Permission;
 import com.torchmind.minecraft.annotation.permission.Permissions;
@@ -16,7 +17,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-@Plugin(name = "mopm", author = "__0x277F", description = "Minecraft Open Proxy Monitor", version = "1.0-SNAPSHOT")
+import javax.annotation.Nonnull;
+
+@Plugin(name = "mopm", author = "Hex", description = "Minecraft Open Proxy Monitor", version = "1.0-SNAPSHOT")
 @Permissions({@Permission(name = "mopm.bypass", description = "Bypass all actions taken when connecting via open proxy", defaultValue = PermissionDefault.OP)})
 public class MopmBukkitPlugin extends JavaPlugin implements IMopmPlugin {
     private MopmLookupBoss boss;
@@ -54,12 +57,20 @@ public class MopmBukkitPlugin extends JavaPlugin implements IMopmPlugin {
 
     @Override
     public void addProxyBlacklist(ProxyBlacklist blacklist) {
-        blacklists.add(blacklist);
+        if (blacklist != null) {
+            blacklists.add(blacklist);
+        }
     }
 
     @Override
     public MopmConfiguration getConfiguration() {
         return config;
+    }
+
+    @Nonnull
+    @Override
+    public ThreadMagic getThreadMagic() {
+        return this;
     }
 
     @Override

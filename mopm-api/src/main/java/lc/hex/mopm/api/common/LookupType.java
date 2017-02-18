@@ -1,4 +1,4 @@
-package __0x277F.plugins.mopm.common;
+package lc.hex.mopm.api.common;
 
 /**
  * Things that can be looked up on a worker thread.

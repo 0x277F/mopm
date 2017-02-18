@@ -1,6 +1,7 @@
-package __0x277F.plugins.mopm.bukkit;
+package lc.hex.mopm.bukkit;
 
-import __0x277F.plugins.mopm.common.ProxyBlacklist;
+import lc.hex.mopm.api.bukkit.AsyncProxyDetectedEvent;
+import lc.hex.mopm.api.common.ProxyBlacklist;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
