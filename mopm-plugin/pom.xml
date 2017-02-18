@@ -25,6 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mopm-plugin</artifactId>
+
     <build>
         <plugins>
             <plugin>
@@ -38,6 +39,7 @@
                             <include>lc.hex:mopm-api</include>
                         </includes>
                     </artifactSet>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
                 <executions>
                     <execution>

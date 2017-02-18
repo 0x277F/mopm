@@ -19,6 +19,7 @@ import lc.hex.mopm.api.common.ILookupBoss;
 import lc.hex.mopm.api.common.IMopmPlugin;
 import lc.hex.mopm.api.common.MopmAPI;
 import lc.hex.mopm.api.common.MopmConfiguration;
+import lc.hex.mopm.api.common.MopmInfo;
 import lc.hex.mopm.api.common.ThreadMagic;
 import lc.hex.mopm.common.MopmLookupBoss;
 import lc.hex.mopm.api.common.ProxyBlacklist;
@@ -34,7 +35,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-@Plugin(name = "mopm", author = "Hex", description = "Minecraft Open Proxy Monitor", version = "1.0-SNAPSHOT")
+@Plugin(name = "mopm", author = "Hex", description = "Minecraft Open Proxy Monitor", version = MopmInfo.VERSION)
 @Permissions({@Permission(name = "mopm.bypass", description = "Bypass all actions taken when connecting via open proxy", defaultValue = PermissionDefault.OP)})
 public class MopmBukkitPlugin extends JavaPlugin implements IMopmPlugin {
     private MopmLookupBoss boss;
